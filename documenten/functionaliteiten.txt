@@ -1,0 +1,12 @@
+Functionaliteiten:
+1: Reageren op bewegingssensor "knopje"
+2: Led activeren na alarmactivatie
+3: Alarm kan communiceren met de server(alarmcentrale)
+4: Alarmcentrale kan communiceren met de user
+5: Alarmcentrale kan mailtjes sturen
+6: Alarmcentrale speelt geluidjes af
+7: Alarmcentrale kan alarm uitzetten
+8: Optioneel: User login, user log
+9: Server kan het bashscript (alarm) aanzetten
+10:
+
