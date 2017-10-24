@@ -8,7 +8,7 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 from time import gmtime, strftime
-fromaddr = "maxzoomers@gmail.com"
+fromaddr = "covfefe.alarmsystem.hu.2k17@gmail.com"
 toaddr = "marczoomers@gmail.com"
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
@@ -21,7 +21,7 @@ moment=strftime("%Y-%m-%d_%H%M")
 print(moment)
 def mailac():
     msg = MIMEMultipart()
-    fromaddr = "maxzoomers@gmail.com"   #email van verzender
+    fromaddr = "covfefe.alarmsystem.hu.2k17@gmail.com"   #email van verzender
     toaddr = "marczoomers@gmail.com"    #email van ontvanger
     msg['From'] = fromaddr
     msg['To'] = toaddr
@@ -40,14 +40,14 @@ def mailac():
     server.ehlo()
     server.starttls()
     server.ehlo
-    server.login(fromaddr, "WACHTWOORD.") #wachtwoord van het verzend emailadress
+    server.login(fromaddr, "") #wachtwoord van het verzend emailadress
     text = msg.as_string()
     server.sendmail(fromaddr, toaddr, text)
     server.quit()
     print("mail is verstuurd naar:"+toaddr)
 def mailde():
     msg = MIMEMultipart()
-    fromaddr = "maxzoomers@gmail.com"   #email van verzender
+    fromaddr = "covfefe.alarmsystem.hu.2k17@gmail.com"   #email van verzender
     toaddr = "marczoomers@gmail.com"    #email van ontvanger
     msg['From'] = fromaddr
     msg['To'] = toaddr
@@ -58,7 +58,7 @@ def mailde():
     server.ehlo()
     server.starttls()
     server.ehlo
-    server.login(fromaddr, "marc1999.") #wachtwoord van het verzend emailadress
+    server.login(fromaddr, "") #wachtwoord van het verzend emailadress
     text = msg.as_string()
     server.sendmail(fromaddr, toaddr, text)
     server.quit()
