@@ -8,5 +8,10 @@ print("Alarm client socket inorde")
 print("Er is nu connectie met de server..")
 
 while True:
-	message = connectie.recv(1024)
-	print("Bericht van de server : {}" .format(message))
+	client_message = input("Voer data in om naar de client te sturen: ")
+	if client_message != "":
+		client_message = bytearray(client_message, 'utf-8')
+		connectie.send(client_message)
+	else:
+		server_message = connectie.recv(1024)
+		print("Bericht van de server : {}" .format(server_message))
