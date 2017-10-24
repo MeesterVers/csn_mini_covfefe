@@ -3,7 +3,7 @@ host = "" #host is leeg zodat hij van uit alle host kan werken
 port = 12397
 
 connectie = socket(AF_INET, SOCK_STREAM)
-print("Alarm server socket inorde")
+print("Alarm server socket in orde")
 connectie.bind((host, port))
 print("Socket Bound")
 connectie.listen(5)
