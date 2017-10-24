@@ -5,7 +5,7 @@ connectie = socket(AF_INET, SOCK_STREAM)
 
 try:
 	connectie.connect((host, port))
-	print("Alarm client socket inorde")
+	print("Alarm client socket in orde")
 	print("Er is nu connectie met de server..")
 	message = connectie.recv(1024)
 	print("Bericht van de server : {}" .format(message))
