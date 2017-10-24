@@ -4,3 +4,9 @@ Max: datum bugfix
 Kadeem: github repo gemaakt.
 Zoheb, Niels: research pi 2 pi communication
 
+24-10-2017 
+Niels: Research and made code on Python and sound
+Marc & Niels: Implementing sound code
+Marc & Niels: Fix camerascriptpy.py om op andere Pi te werken.
+
+Last editted by Niels!
