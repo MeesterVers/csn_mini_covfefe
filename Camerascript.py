@@ -9,10 +9,10 @@ from email.mime.base import MIMEBase
 from email import encoders
 from time import gmtime, strftime
 import pygame
-global fromaddr
-fromaddr = "alarmsystem.cofveve.hu.2k17@gmail.com"
-global toaddr
+fromaddr = "maxzoomers@gmail.com"
 toaddr = "marczoomers@gmail.com"
+global fromaddr
+global toaddr
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -24,8 +24,8 @@ moment=strftime("%Y-%m-%d_%H%M")
 print(moment)
 def alarmsound():
     pygame.mixer.init()
-    pygame.mixer.music.load("Audio.mp3")
-    pygame.mixer.music.play(0)
+    pygame.mixer.music.load("Im pickle rick.mp3")
+    pygame.mixer.music.play(5)
     pygame.mixer.music.set_volume(1)
     while pygame.mixer.music.get_busy() == True:
         continue
@@ -38,7 +38,7 @@ def mailac():
     msg.attach(MIMEText(body, 'plain'))
     moment=strftime("%Y-%m-%d_%H%M")
     filename = moment+".jpg"
-    attachment = open("/home/pi/webcam/"+moment+".jpg", "rb")
+    attachment = open("/home/pi/Desktop/Project CSN/webcam/"+moment+".jpg", "rb")
     part = MIMEBase('application', 'octet-stream')
     part.set_payload((attachment).read())
     encoders.encode_base64(part)
@@ -72,26 +72,26 @@ def mailde():
 try:
     while True:
         input_state = GPIO.input(12)
-        output_state = GPIO.input(22)
+	output_state = GPIO.input(22)
         if(GPIO.input(12)==GPIO.LOW):
             print("Alarm geactiveerd")
-            
-            subprocess.call("/home/pi/webcam/webcam.sh",shell=True)
+            alarmsound()
+            subprocess.call("/home/pi/Desktop/Project CSN/webcam/webcam.sh",shell=True)
             GPIO.output(18,GPIO.HIGH)
             moment=strftime("%Y-%m-%d_%H%M")
             print('Foto gemaakt')
             print('20 seconden deactivatietijd voor het verzenden van mail met foto van alarmactivatie')
-            alarmsound()
-            mailac()
-            GPIO.output(18,GPIO.LOW)
-            break
-        elif(GPIO.input(22)==GPIO.HIGH):
-            GPIO.output(18,GPIO.LOW)
-        elif(GPIO.input(22)==GPIO.LOW):
-            GPIO.output(18,GPIO.HIGH)
-            i=i+1
+	    time.sleep(20)
+	    mailac()
+	    GPIO.output(18,GPIO.LOW)
+	    break
+	elif(GPIO.input(22)==GPIO.HIGH):
+	    GPIO.output(18,GPIO.LOW)
+	elif(GPIO.input(22)==GPIO.LOW):
+	    GPIO.output(18,GPIO.HIGH)
+        i=i+1
 except KeyboardInterrupt:
-        GPIO.cleanup()
-        print("\nAlarm gedeactiveerd")
-        pygame.mixer.music.stop()
-        mailde()
+    GPIO.cleanup()
+    print("\nAlarm gedeactiveerd")
+    pygame.mixer.music.stop()
+    mailde()

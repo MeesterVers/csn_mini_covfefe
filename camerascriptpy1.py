@@ -8,10 +8,7 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 from time import gmtime, strftime
-import pygame
-global fromaddr
-fromaddr = "alarmsystem.cofveve.hu.2k17@gmail.com"
-global toaddr
+fromaddr = "covfefe.alarmsystem.hu.2k17@gmail.com"
 toaddr = "marczoomers@gmail.com"
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
@@ -22,15 +19,10 @@ i=0
 print("Het alarm is actief")
 moment=strftime("%Y-%m-%d_%H%M")
 print(moment)
-def alarmsound():
-    pygame.mixer.init()
-    pygame.mixer.music.load("Audio.mp3")
-    pygame.mixer.music.play(0)
-    pygame.mixer.music.set_volume(1)
-    while pygame.mixer.music.get_busy() == True:
-        continue
 def mailac():
     msg = MIMEMultipart()
+    fromaddr = "covfefe.alarmsystem.hu.2k17@gmail.com"   #email van verzender
+    toaddr = "marczoomers@gmail.com"    #email van ontvanger
     msg['From'] = fromaddr
     msg['To'] = toaddr
     msg['Subject'] = "Alarmactivatie"
@@ -48,13 +40,15 @@ def mailac():
     server.ehlo()
     server.starttls()
     server.ehlo
-    server.login(fromaddr, "Meme.420") #wachtwoord van het verzend emailadress
+    server.login(fromaddr, "") #wachtwoord van het verzend emailadress
     text = msg.as_string()
     server.sendmail(fromaddr, toaddr, text)
     server.quit()
     print("mail is verstuurd naar:"+toaddr)
 def mailde():
     msg = MIMEMultipart()
+    fromaddr = "covfefe.alarmsystem.hu.2k17@gmail.com"   #email van verzender
+    toaddr = "marczoomers@gmail.com"    #email van ontvanger
     msg['From'] = fromaddr
     msg['To'] = toaddr
     msg['Subject'] = "Alarmdeactivatie"
@@ -64,7 +58,7 @@ def mailde():
     server.ehlo()
     server.starttls()
     server.ehlo
-    server.login(fromaddr, "Meme.420") #wachtwoord van het verzend emailadress
+    server.login(fromaddr, "") #wachtwoord van het verzend emailadress
     text = msg.as_string()
     server.sendmail(fromaddr, toaddr, text)
     server.quit()
@@ -72,26 +66,25 @@ def mailde():
 try:
     while True:
         input_state = GPIO.input(12)
-        output_state = GPIO.input(22)
+	    output_state = GPIO.input(22)
         if(GPIO.input(12)==GPIO.LOW):
             print("Alarm geactiveerd")
-            
             subprocess.call("/home/pi/webcam/webcam.sh",shell=True)
             GPIO.output(18,GPIO.HIGH)
             moment=strftime("%Y-%m-%d_%H%M")
             print('Foto gemaakt')
             print('20 seconden deactivatietijd voor het verzenden van mail met foto van alarmactivatie')
-            alarmsound()
-            mailac()
-            GPIO.output(18,GPIO.LOW)
-            break
-        elif(GPIO.input(22)==GPIO.HIGH):
-            GPIO.output(18,GPIO.LOW)
-        elif(GPIO.input(22)==GPIO.LOW):
-            GPIO.output(18,GPIO.HIGH)
-            i=i+1
+	    time.sleep(20)
+	    mailac()
+	    GPIO.output(18,GPIO.LOW)
+	    break
+	elif(GPIO.input(22)==GPIO.HIGH):
+	    GPIO.output(18,GPIO.LOW)
+	elif(GPIO.input(22)==GPIO.LOW):
+	    GPIO.output(18,GPIO.HIGH)
+        i=i+1
 except KeyboardInterrupt:
-        GPIO.cleanup()
-        print("\nAlarm gedeactiveerd")
-        pygame.mixer.music.stop()
-        mailde()
+    GPIO.cleanup()
+    print("\nAlarm gedeactiveerd")
+    mailde()
+    
