@@ -7,9 +7,11 @@ print("Alarm server socket inorde")
 connectie.bind((host, port))
 print("Socket Bound")
 connectie.listen(5)
+
 print("Server wacht op connectie.....")
 q,addr = connectie.accept()
 
-message = input("Voer data in om naar de client te sturen: ")
-message = bytearray(message, 'utf-8')
-q.send(message)
+while True:
+	message = input("Voer data in om naar de client te sturen: ")
+	message = bytearray(message, 'utf-8')
+	q.send(message)
