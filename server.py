@@ -2,13 +2,14 @@ from socket import *
 host = "" #host is leeg zodat hij van uit alle host kan werken
 port = 12397
 
-s = socket(AF_INET, SOCK_STREAM)
-print("Socket Made")
-s.bind((host, port))
+connectie = socket(AF_INET, SOCK_STREAM)
+print("Alarm server socket inorde")
+connectie.bind((host, port))
 print("Socket Bound")
-s.listen(5)
+connectie.listen(5)
+print("Server wacht op connectie.....")
+q,addr = connectie.accept()
 
-print("Listening for connections...")
-q,addr = s.accept()
-data = input("Enter data to be sent: ")
-q.send(data)
+message = input("Voer data in om naar de client te sturen: ")
+message = bytearray(message, 'utf-8')
+q.send(message)
