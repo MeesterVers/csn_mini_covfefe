@@ -1,17 +1,19 @@
 from socket import *
-host = "145.89.158.78" #ip van de host (server)
+host = "" #host is leeg zodat hij van uit alle host kan werken
 port = 12397
-connectie = socket(AF_INET, SOCK_STREAM)
 
-connectie.connect((host, port))
-print("Alarm client socket inorde")
-print("Er is nu connectie met de server..")
+connectie = socket(AF_INET, SOCK_STREAM)
+connectie.bind((host, port))
+connectie.listen(5)
+
+print("Server wacht op connectie.....")
+q,addr = connectie.accept()
 
 while True:
-	client_message = input("Voer data in om naar de client te sturen: ")
-	if client_message != "":
-		client_message = bytearray(client_message, 'utf-8')
-		connectie.send(client_message)
+	server_message = input("Voer data in om naar de client te sturen: ")
+	if server_message !="":
+		server_message = bytearray(server_message, 'utf-8')
+		q.send(server_message)
 	else:
-		server_message = connectie.recv(1024)
-		print("Bericht van de server : {}" .format(server_message))
+		client_message = q.recv(1024)
+		print("Bericht van de client : {}" .format(client_message)
