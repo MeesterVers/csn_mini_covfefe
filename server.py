@@ -14,10 +14,12 @@ q,addr = connectie.accept()
 def ontvangbericht():
 	while True:
 		client_message = q.recv(1024)
-		print("Bericht van de client : {} \n" .format(client_message))
+		print(client_message)
+		if(str(client_message) == "b'alarm_on'"):
+			print("DO DIT SHIT")
 Thread(target=ontvangbericht).start()
 
-while True:
-	server_message = input("Send message: ")
-	server_message = bytearray(server_message, 'utf-8')
-	q.send(server_message)
+def send_to_client(server_message):
+		server_message = bytearray(server_message, 'utf-8')
+		q.send(server_message)
+send_to_client("disarm")
