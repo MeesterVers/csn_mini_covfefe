@@ -1,23 +1,23 @@
 # `Covfefe` alarm systeem
 ## Vak: CSN Alarm systeem
 
-**_Het systeem_**
+**_Het systeem_**<br>
 Covfefe alarm systeem is een systeem dat bestaat uit een server Raspberry Pi, en een client(s) Raspberry Pi. Alle Pi's draaien op het **Raspbian** bestuurings systeem.
 
-**_Systeem installatie_**
+**_Systeem installatie_**<br>
 Om het systeem werkend te krijgen moet je de volgende stappen uitvoeren. Er is ook een video van hoe het systeem aan de client side een beetje in elkaar zit. De video is te vinden op deze link **[https://youtu.be/eAzqxVyyy_g]**
 
 1. De **Git repo (https://github.com/MeesterVers/csn_mini_covfefe)** moet gefetch of gepulled worden.
 
-2. De volgende genoemde files en folder moeten in de directory `\pi\` op de alarm (client) pi.
+2. De volgende genoemde files en folder moeten in de directory `\pi\` op de alarm (client) pi.<br>
     -`1.mp3`
-	-`2.mp3`
-	-`3.mp3`
-	-`4.mp3`
-	-`5.mp3`
-	-`beep.mp3`
-	-`bashscript.sh`
-	-`camerascriptpy.py`
+	-`2.mp3`<br>
+	-`3.mp3`<br>
+	-`4.mp3`<br>
+	-`5.mp3`<br>
+	-`beep.mp3`<br>
+	-`bashscript.sh`<br>
+	-`camerascriptpy.py`<br>
 	-`\webcam\`
 
 3. Op de server pi moet aleen de file `server.py` fetched, pulled of gedownload worden.
