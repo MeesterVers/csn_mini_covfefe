@@ -9,8 +9,8 @@ Om het systeem werkend te krijgen moet je de volgende stappen uitvoeren. Er is o
 
 1. De **Git repo (https://github.com/MeesterVers/csn_mini_covfefe)** moet gefetch of gepulled worden.
 
-2. De volgende genoemde files en folder moeten in de directory `\pi\` op de alarm (client) pi.<br>
-    -`1.mp3`
+2. De volgende genoemde files en folder moeten in de directory `\pi\` op de alarm (client) pi.
+    <br>-`1.mp3`<br>
 	-`2.mp3`<br>
 	-`3.mp3`<br>
 	-`4.mp3`<br>
